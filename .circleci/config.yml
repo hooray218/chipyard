@@ -491,7 +491,6 @@ workflows:
                 requires:
                     - install-riscv-toolchain
                     - install-verilator
-                    - prepare-fireariane
 
             - chipyard-ariane-run-tests:
                 requires:
