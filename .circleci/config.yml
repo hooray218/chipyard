@@ -246,19 +246,6 @@ jobs:
         executor: main-env
         steps:
             - prepare-rtl:
-                project-key: "tracegen-boom"
-    prepare-firesim:
-        executor: main-env
-        steps:
-            - prepare-rtl:
-                project-key: "firesim"
-                build-script: "do-firesim-build.sh"
-    prepare-fireboom:
-        executor: main-env
-        steps:
-            - prepare-rtl:
-                project-key: "fireboom"
-                build-script: "do-firesim-build.sh"
     prepare-chipyard-ariane:
         executor: main-env
         steps:
@@ -316,16 +303,29 @@ jobs:
         executor: main-env
         steps:
             - run-tests:
-                extra-cache-restore: "extra-tests"
                 project-key: "firesim"
-                run-script: "run-firesim-tests.sh"
+                run-script: "run-firesim-scala-tests.sh"
+                timeout: "20m"
     fireboom-run-tests:
         executor: main-env
         steps:
             - run-tests:
-                extra-cache-restore: "extra-tests"
                 project-key: "fireboom"
-                run-script: "run-firesim-tests.sh"
+                run-script: "run-firesim-scala-tests.sh"
+                timeout: "30m"
+    firesim-multiclock-run-tests:
+        executor: main-env
+        steps:
+            - run-tests:
+                project-key: "firesim-multiclock"
+                run-script: "run-firesim-scala-tests.sh"
+                timeout: "20m"
+    firesim-ariane-run-tests:
+        executor: main-env
+        steps:
+            - run-tests:
+                project-key: "fireariane"
+                run-script: "run-firesim-scala-tests.sh"
                 timeout: "30m"
     midasexamples-run-tests:
         executor: main-env
@@ -492,12 +492,15 @@ workflows:
             - firesim-run-tests:
                 requires:
                     - prepare-firesim
-                    - build-extra-tests
-
+            - firesim-multiclock-run-tests:
+                requires:
+                    - prepare-firesim
             - fireboom-run-tests:
                 requires:
                     - prepare-fireboom
-                    - build-extra-tests
+            - fireboom-run-tests:
+                requires:
+                    - prepare-fireariane
 
             - chipyard-ariane-run-tests:
                 requires:
