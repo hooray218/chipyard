@@ -430,6 +430,11 @@ workflows:
                     - install-riscv-toolchain
                     - install-verilator
 
+            - prepare-chipyard-ariane:
+                requires:
+                    - install-riscv-toolchain
+                    - install-verilator
+
             # Run the respective tests
 
             # Run midasexamples test
@@ -487,11 +492,6 @@ workflows:
                 requires:
                     - install-riscv-toolchain
                     - install-verilator
-            - fireboom-run-tests:
-                requires:
-                    - install-riscv-toolchain
-                    - install-verilator
-
             - chipyard-ariane-run-tests:
                 requires:
                     - prepare-chipyard-ariane
