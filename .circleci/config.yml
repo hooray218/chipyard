@@ -430,21 +430,6 @@ workflows:
                     - install-riscv-toolchain
                     - install-verilator
 
-            - prepare-firesim:
-                requires:
-                    - install-riscv-toolchain
-                    - install-verilator
-
-            - prepare-fireboom:
-                requires:
-                    - install-riscv-toolchain
-                    - install-verilator
-
-            - prepare-chipyard-ariane:
-                requires:
-                    - install-riscv-toolchain
-                    - install-verilator
-
             # Run the respective tests
 
             # Run midasexamples test
@@ -492,15 +477,20 @@ workflows:
             # Run the firesim tests
             - firesim-run-tests:
                 requires:
-                    - prepare-firesim
+                    - install-riscv-toolchain
+                    - install-verilator
             - firesim-multiclock-run-tests:
                 requires:
-                    - prepare-firesim
+                    - install-riscv-toolchain
+                    - install-verilator
             - fireboom-run-tests:
                 requires:
-                    - prepare-fireboom
+                    - install-riscv-toolchain
+                    - install-verilator
             - fireboom-run-tests:
                 requires:
+                    - install-riscv-toolchain
+                    - install-verilator
                     - prepare-fireariane
 
             - chipyard-ariane-run-tests:
