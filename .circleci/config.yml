@@ -246,6 +246,7 @@ jobs:
         executor: main-env
         steps:
             - prepare-rtl:
+                project-key: "tracegen-boom"
     prepare-chipyard-ariane:
         executor: main-env
         steps:
