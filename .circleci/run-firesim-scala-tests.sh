@@ -47,4 +47,4 @@ run "export RISCV=\"$TOOLS_DIR\"; \
      export FIRESIM_ENV_SOURCED=1; \
      export PATH=\"$REMOTE_VERILATOR_DIR/bin:\$PATH\"; \
      export VERILATOR_ROOT=\"$REMOTE_VERILATOR_DIR\"; \
-     make -C $REMOTE_FIRESIM_DIR JAVA_ARGS=\"$REMOTE_JAVA_ARGS\" testOnly SCALA_TEST=$SCALA_TEST_NAME"
+     make -C $REMOTE_FIRESIM_DIR JAVA_ARGS=\"$REMOTE_JAVA_ARGS\" testOnly ${mapping[$1]}"
